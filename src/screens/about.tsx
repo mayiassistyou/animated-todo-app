@@ -59,7 +59,7 @@ const AboutScreen = () => {
                         Twitter
                     </LinkButton>
                     <LinkButton
-                        bg={useColorModeValue('darkBlue', 'darkBlue.800')}
+                        bg={useColorModeValue('blue.900', 'darkBlue.800')}
                         size="lg"
                         borderRadius="full"
                         href="https://github.com/mayiassistyou"
