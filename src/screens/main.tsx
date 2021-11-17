@@ -1,22 +1,20 @@
 import React, { useCallback, useState} from 'react';
-import { Text, Box, Center, VStack, useColorModeValue, Fab, Icon } from 'native-base';
+import { VStack, useColorModeValue, Fab, Icon } from 'native-base';
 import ThemeToggle from '../components/theme-toggle';
 import { AntDesign } from '@expo/vector-icons';
 import shortid from 'shortid';
 import TaskList from '../components/task-list';
+import AnimatedColorBox from '../components/animated-color-box';
+import Masthead from '../components/masthead';
+import Navbar from '../components/navbar';
 
 
 const initialData = [
     {
         id: shortid.generate(),
-        subject: 'Buy movie tickets for Friday',
+        subject: 'Add something ...',
         done: false
     },
-    {
-        id: shortid.generate(),
-        subject: 'Make a React Native App',
-        done: false
-    }
 ]
 
 export default function MainScreen(){
@@ -60,8 +58,18 @@ export default function MainScreen(){
       }, [])
 
     return(
-        <Center _dark={{bg: 'blueGray.900'}} _light={{bg: 'blueGray.50'}} flex={1} >
-            <VStack space={5} alignItems="center" w="full">
+        <AnimatedColorBox flex={1} w="full" bg={useColorModeValue('warmGray.50', 'primary.900')} >
+            <Masthead title="What's up, Yam!" image={require('../assets/masthead.png')}>
+              <Navbar />
+            </Masthead>
+            <VStack 
+              space={1}
+              bg={useColorModeValue('warmGray.50', 'primary.900')}
+              mt="-20px"
+              borderTopLeftRadius="20px"
+              borderTopRightRadius="20px"
+              pt="20px"
+            >
                 <TaskList
                     data={data}
                     onToggleItem={handleToggleTaskItem}
@@ -71,7 +79,6 @@ export default function MainScreen(){
                     onRemoveItem={handleRemoveItem}
                     editingItemId={editingItemId}
                 />
-                <ThemeToggle />
             </VStack>
             <Fab 
                 position="absolute"
@@ -93,6 +100,6 @@ export default function MainScreen(){
                     setEditingItemId(id);
                 }}
         />
-        </Center>
+        </AnimatedColorBox>
     )
 }
